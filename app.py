@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/snapshot')
 def snapshot():
-    with open('datasets/symbols.csv') as f:
+    with open('datasets/symbol.csv') as f:
         for line in f:
             if "," not in line:
                 continue
