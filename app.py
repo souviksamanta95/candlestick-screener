@@ -9,12 +9,13 @@ app = Flask(__name__)
 
 @app.route('/snapshot')
 def snapshot():
-    with open('datasets/symbol.csv') as f:
+    with open('datasets/symbols.csv') as f:
         for line in f:
             if "," not in line:
                 continue
             symbol = line.split(",")[0]
-            data = yf.download(symbol, start="2020-01-01", end="2020-08-01")
+            symb = symbol + ".NS"
+            data = yf.download(symb, start="2020-01-01", end="2020-08-01")
             data.to_csv('datasets/daily/{}.csv'.format(symbol))
 
     return {
